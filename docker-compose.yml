@@ -1,0 +1,28 @@
+services:
+  # Spring Boot Backend Service
+  backend-api:
+    build:
+      context: ./courtonline-backend # Path to your Spring Boot project folder
+      dockerfile: Dockerfile
+    container_name: shoponline-backend
+    ports:
+      - "8080:8080"
+    networks:
+      - shop-network
+
+  # Angular Frontend Service
+  frontend-app:
+    build:
+      context: ./shoponline-frontend # Path to your Angular project folder
+      dockerfile: Dockerfile
+    container_name: shoponline-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend-api
+    networks:
+      - shop-network
+
+networks:
+  shop-network:
+    driver: bridge

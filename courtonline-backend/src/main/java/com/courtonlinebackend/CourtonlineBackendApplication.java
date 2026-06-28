@@ -1,0 +1,13 @@
+package com.courtonlinebackend;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class CourtonlineBackendApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(CourtonlineBackendApplication.class, args);
+	}
+
+}
