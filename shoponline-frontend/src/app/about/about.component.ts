@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -8,11 +8,12 @@ import { ApiService } from '../services/api.service';
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })
-export class AboutComponent {
+export class AboutComponent implements OnInit{
 
 aboutData = '';
+private apiService = inject(ApiService);
 
-  constructor(private apiService: ApiService) {}
+  
 
   ngOnInit() {
     this.apiService.getAbout().subscribe(data => {

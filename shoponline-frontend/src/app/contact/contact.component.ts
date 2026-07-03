@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -8,10 +8,10 @@ import { ApiService } from '../services/api.service';
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit{
    contactData = '';
 
-  constructor(private apiService: ApiService) {}
+ private apiService = inject(ApiService);
 
   ngOnInit() {
     this.apiService.getContact().subscribe(data => {
