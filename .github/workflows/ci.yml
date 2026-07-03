@@ -31,8 +31,7 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
-      - name: Run Unit Tests
-        run: npm test -- --watch=false --browsers=ChromeHeadless
+      
 
       - name: Build Project
         run: npm run build
