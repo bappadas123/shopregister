@@ -24,6 +24,7 @@ jobs:
           cache-dependency-path: shoponline-frontend/package-lock.json
 
       - name: Install Dependencies
+        working-directory: shoponline-frontend
         run: npm ci
 
       - name: Run ESLint
