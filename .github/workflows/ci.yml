@@ -7,12 +7,10 @@ on:
       - master
 
 jobs:
-  build:
+  frontend-ci:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: shoponline-frontend
+    
 
     steps:
       - name: Checkout Source Code
@@ -35,3 +33,24 @@ jobs:
 
       - name: Build Project
         run: npm run build
+
+
+
+ # --- BACKEND JOB (SPRING BOOT) ---
+  backend-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v5
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17' # Change to '21' if your Spring Boot app uses Java 21
+          distribution: 'temurin'
+          cache: 'maven' # Automatically caches your .m2 directory dependencies
+
+      # Note: If your project uses Gradle instead of Maven, change the command below to: ./gradlew build
+      - name: Build Spring Boot JAR
+        working-directory: courtonline-backend
+        run: mvn clean package -DskipTests
