@@ -28,6 +28,7 @@ jobs:
         run: npm ci
 
       - name: Run ESLint
+        working-directory: shoponline-frontend
         run: npm run lint
 
       
