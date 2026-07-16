@@ -5,7 +5,7 @@ import { Injectable, inject } from '@angular/core';
   providedIn: 'root'
 })
 export class ApiService {
- private baseUrl = 'http://shoponline-backend:8080/api';
+ private baseUrl = 'http://localhost:8080/api';
   private http = inject(HttpClient);
   getAbout() {
   return this.http.get(`${this.baseUrl}/about`, {
