@@ -4,20 +4,20 @@ metadata:
   name: frontend-deployment
   namespace: shopregister
   labels: 
-   app: frontend 
+   app: frontend  #Deployment Label (Optional) - Used to find this deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: frontend
+      app: frontend # Selector (Strict) - Looks for Pods with this exact label
   template:
     metadata:
       labels:
-        app: frontend
+        app: frontend # Pod Label (Strict) - Stamped onto every Pod created
     spec:
       containers:
-      - name: frontend
+      - name: frontend #Container Name (Independent) - Can be anything you want
         image: dasbappa2007/shopregister-frontend:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 80 # always application port or expose port which mension docker file

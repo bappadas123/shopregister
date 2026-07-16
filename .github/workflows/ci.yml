@@ -37,6 +37,21 @@ jobs:
         working-directory: shoponline-frontend
         run: npm run build
 
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ vars.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Frontend Docker Image
+        working-directory: shoponline-frontend
+        run: |
+          docker build -t ${{ vars.DOCKER_USERNAME }}/shoponline-frontend:latest .
+
+      - name: Push Frontend Docker Image
+        run: |
+          docker push ${{ vars.DOCKER_USERNAME }}/shoponline-frontend:latest  
+
 
 
  # --- BACKEND JOB (SPRING BOOT) ---
@@ -57,3 +72,18 @@ jobs:
       - name: Build Spring Boot JAR
         working-directory: courtonline-backend
         run: mvn clean package -DskipTests
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ vars.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Backend Docker Image
+        working-directory: courtonline-backend
+        run: |
+          docker build -t ${{ vars.DOCKER_USERNAME }}/shoponline-backend:latest .
+
+      - name: Push Backend Docker Image
+        run: |
+          docker push ${{ vars.DOCKER_USERNAME }}/shoponline-backend:latest  

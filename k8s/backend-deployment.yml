@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: shopregister
+  labels: 
+   app: backend 
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: dasbappa2007/shopregister-backend:lates
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080 # always application port or expose port which mension docker file
